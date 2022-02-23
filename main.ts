@@ -1,9 +1,17 @@
 input.onButtonPressed(Button.A, function () {
-    maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CW, 150)
+    radio.sendNumber(0)
+})
+radio.onReceivedString(function (receivedString) {
+    if (receivedString == 0) {
+        maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CW, 150)
+    } else if (receivedString == 1) {
+        maqueen.motorStop(maqueen.Motors.All)
+    }
 })
 input.onButtonPressed(Button.B, function () {
-    maqueen.motorStop(maqueen.Motors.All)
+    radio.sendNumber(1)
 })
+radio.setGroup(40)
 basic.forever(function () {
 	
 })
